@@ -1,0 +1,50 @@
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  font-size: calc(10px + 2vmin);
+}
+
+.my-header {
+  padding-top: 24px;
+  color: aliceblue;
+}
+
+.container{
+}
+
+.row {
+  padding: 4px;
+}
+
+.tags {
+  padding: 24px;
+  font-size: 12px;
+}
+
+.delete-filter {
+  margin-left: 8px;
+}
+
+.my-badge {
+  margin-left: 8px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
