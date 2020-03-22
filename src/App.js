@@ -47,15 +47,35 @@ class App extends Component {
         this.setState({
           posts: res.data.posts
         })
-    })
+      })
    }
   }
 
   removeFilter(item) {
-      console.log("xpto")
       let list = this.state.visibleFilters.filter(i => i !== item);
       this.setState({
         visibleFilters: list
+      })
+
+      apiConfig.get(`/posts?f=${list}`).then(res => {
+        this.setState({
+          posts: res.data.posts
+        })
+      })
+  }
+
+  clickFilter(item) {
+      let list = this.state.visibleFilters;
+      list.push(item);
+
+      this.setState({
+        visibleFilters: list
+      })
+
+      apiConfig.get(`/posts?f=${list}`).then(res => {
+        this.setState({
+          posts: res.data.posts
+        })
       })
   }
 
@@ -120,7 +140,7 @@ class App extends Component {
   
                   <ul className="list-group tags">
                     {this.state.filters.map(filter => (
-                      <li className="list-group-item" key={filter.tag}>{filter.tag} <span className="badge badge-secondary">{filter.count}</span></li>
+                      <li onClick={() => this.clickFilter(filter.tag)} className="list-group-item" key={filter.tag}>{filter.tag} <span className="badge badge-secondary">{filter.count}</span></li>
                     ))}
                   </ul>
                 </div>
