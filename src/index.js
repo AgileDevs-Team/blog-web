@@ -1,14 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter, Switch, Route } from 'react-router-dom' 
+
+import App from './App';
+import CreatePost from './pages/CreatePost';
+import Admin from './pages/Admin';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+  
+  <Switch>
+      <Route path="/" exact={true} component={App} />
+      <Route path="/post" component={CreatePost} />
+      <Route path="/admin" component={Admin} />
+  </Switch>
+
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

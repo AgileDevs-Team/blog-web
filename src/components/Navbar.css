@@ -1,0 +1,14 @@
+.my-navbar {
+    color: #ffffff;
+    background-color: #523f7f;
+}
+/* 
+01c7fd */
+
+.item-bar {
+    color: #ffffff;
+}
+
+.item-bar:hover {
+    color: #523f7f;
+}
