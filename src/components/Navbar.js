@@ -11,7 +11,7 @@ class NavBar extends Component {
     render() {
         return (
             <nav className="navbar my-navbar">
-                <a className="navbar-brand item-bar">NetoDevel</a>
+                <a className="navbar-brand item-bar">{this.props.title}</a>
                 <div className="form-inline">
                     <input className="form-control mr-sm-2"
                         type="search" onKeyDown={(e) => this.props.onKeySearch(e)}

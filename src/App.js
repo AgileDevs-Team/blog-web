@@ -87,7 +87,7 @@ class App extends Component {
     return (
       <div className="App">
 
-        <NavBar onKeySearch={this.buscaInput} />
+        <NavBar title="NetoDevel" onKeySearch={this.buscaInput} />
 
         <header className="App-header">
           <div className="container">

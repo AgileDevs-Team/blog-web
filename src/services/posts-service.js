@@ -1,3 +1,3 @@
-import http from 'http';
+import apiConfig from './api-config';
 
-export const fecthAllPosts = http.get(`/posts`)
+export const fecthAllPosts = apiConfig.get(`/posts`)

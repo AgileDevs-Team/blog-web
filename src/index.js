@@ -7,8 +7,8 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Switch, Route } from 'react-router-dom' 
 
 import App from './App';
-import CreatePost from './pages/CreatePost';
-import Admin from './pages/Admin';
+import CreatePost from './pages/create/CreatePost';
+import Admin from './pages/admin/Admin';
 
 ReactDOM.render(
   <BrowserRouter>
