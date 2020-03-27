@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NavBar from '../../components/navbar/Navbar';
 
 class CreatePost extends Component {
     
@@ -9,10 +10,9 @@ class CreatePost extends Component {
     render() {
         return (
             <div>
-                <h1>Create Post</h1>
-                <hr />
+                <NavBar title="Create Post" />
                 
-                <div className="container">
+                <div className="node-master">
                     <form>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Title</label>
@@ -22,7 +22,6 @@ class CreatePost extends Component {
                             <label for="exampleInputPassword1">Content</label>
                             <textarea type="text" class="form-control text-area" id="exampleInputPassword1"/>
                         </div>
-                        
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

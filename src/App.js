@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import apiConfig from './services/api-config';
-import NavBar from './components/Navbar'
+import NavBar from './components/navbar/Navbar'
 
 class App extends Component {
 
@@ -87,7 +87,7 @@ class App extends Component {
     return (
       <div className="App">
 
-        <NavBar title="NetoDevel" onKeySearch={this.buscaInput} />
+        <NavBar title="NetoDevel" onKeySearch={this.buscaInput} withSearch="true" />
 
         <header className="App-header">
           <div className="container">

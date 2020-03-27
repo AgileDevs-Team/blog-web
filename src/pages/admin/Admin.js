@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NavBar from '../../components/Navbar';
+import NavBar from '../../components/navbar/Navbar';
 import './Admin.css';
 import { fecthAllPosts } from '../../services/posts-service'
 
