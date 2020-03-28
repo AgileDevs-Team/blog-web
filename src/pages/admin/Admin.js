@@ -31,7 +31,6 @@ class Admin extends Component {
     render() {
         return (
             <div>   
-
                 <NavBar title="Admin"/>
                 
                 <div className="node-master">
