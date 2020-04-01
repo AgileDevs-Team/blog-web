@@ -9,6 +9,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import App from './App';
 import CreatePost from './pages/create/CreatePost';
 import Admin from './pages/admin/Admin';
+import EditPost from './pages/edit/EditPost';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -17,6 +18,7 @@ ReactDOM.render(
       <Route path="/" exact={true} component={App} />
       <Route path="/post" component={CreatePost} />
       <Route path="/admin" component={Admin} />
+      <Route path="/post/:id" component={EditPost} />
   </Switch>
 
   </BrowserRouter>,
