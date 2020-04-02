@@ -18,7 +18,6 @@ class NavBar extends Component {
                                 placeholder="Pesquisa"
                             />
                     : null }
-                    
                 </div>
             </nav>
         );

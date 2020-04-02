@@ -1,34 +1,42 @@
 import React, { Component } from 'react';
 import NavBar from '../../components/navbar/Navbar';
 import './Admin.css';
-import { fecthAllPosts } from '../../services/posts-service'
+import { fecthAllPosts, deletePost } from '../../services/posts-service'
 
 class Admin extends Component {
 
     constructor(props) {
         super(props)
         
-        this.state =  {
+        this.state = {
             posts: []
         }
     }
 
-    createHandler = (e) => {
-        e.preventDefault();
+    createHandler = () => {
         this.props.history.push('/post');
     }
 
     componentDidMount() {
+        this.findAllPosts();
+    } 
+
+    findAllPosts = () => {
         fecthAllPosts.then(res => {
             this.setState({
                 posts: res.data.posts,
                 filters: res.data.filters
             })
         })
-    } 
+    }
 
     clickEditPost = id => {
         this.props.history.push('/post/' + id);
+    }
+
+    deletePost = id => {
+        deletePost(id);
+        this.findAllPosts();
     }
 
     render() {
@@ -38,16 +46,16 @@ class Admin extends Component {
                 
                 <div className="node-master">
                     <div className="row">
-                        <button type="button" className="btn btn-info" onClick={this.createHandler}>Create Post</button>
+                        <button type="button" className="btn btn-info" onClick={() => this.createHandler()}>Create Post</button>
                     </div>
 
                     <hr />
-
                     <table className="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
+                                <th scope="col">Content</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -56,6 +64,7 @@ class Admin extends Component {
                                 <tr key={ post.id }>
                                     <th scope="row">-</th>
                                     <td>{ post.title }</td>
+                                    <td>{ post.content }</td>
                                     <td>
                                         <div className="row">
                                             <div className="col-md-1">
@@ -65,7 +74,7 @@ class Admin extends Component {
                                                 </svg>
                                             </div>
                                             <div className="col-md-1">
-                                                <svg className="bi bi-trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <svg onClick={() => this.deletePost(post.id)} className="bi bi-trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z"/>
                                                     <path fillRule="evenodd" d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0 01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 01-1-1V2a1 1 0 011-1H6a1 1 0 011-1h2a1 1 0 011 1h3.5a1 1 0 011 1v1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" clipRule="evenodd"/>
                                                 </svg>
@@ -76,6 +85,7 @@ class Admin extends Component {
                             ))}
                         </tbody>
                     </table>
+
                 </div>
             </div>
         );

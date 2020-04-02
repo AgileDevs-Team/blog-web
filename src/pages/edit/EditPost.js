@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from '../../components/navbar/Navbar';
-import apiConfig from '../../services/api-config';
 import './EditPost.css';
+import { findPostById, updatePost } from '../../services/posts-service';
 
 class EditPost extends Component {
     
@@ -21,8 +21,6 @@ class EditPost extends Component {
 
     addTag = (e) => {
         if(e.keyCode == 13){
-            console.log(e.target.value)
-
             const query = e.target.value;
             let list = this.state.tags;
 
@@ -62,23 +60,43 @@ class EditPost extends Component {
             post: post
         })
     }
+
+    componentDidMount() {
+        const { id } = this.props.match.params
+
+        findPostById(id).then(res => {
+            let post = {
+                title: res.data.title,
+                content: res.data.content
+            }
+
+            let tags = res.data.tags;
+
+            this.setState({
+                post: post,
+                tags: tags
+            })
+        })
+
+    }
    
     addPost = (e) => {
         e.preventDefault();
         
+        const { id } = this.props.match.params
+
+        console.log(id);
+
         const post = this.state.post;
         post.tags = this.state.tags;
+
         this.setState({
             post: post
         })
 
-        apiConfig.post("/posts", this.state.post)
-            .then((response)=> {
-                this.props.history.push('/admin');
-                console.log(response)
-            }).catch((err)=>{
-                console.log(err);
-            })
+        updatePost(post, id).then(res => {
+            this.props.history.push('/admin');
+        });
     }
 
     backButton = (e) => {
@@ -94,11 +112,11 @@ class EditPost extends Component {
                     <form>
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1">Title</label>
-                            <input type="text" ref="title" onChange={(e) => this.handlerValues(e)} className="form-control" />
+                            <input type="text" value={this.state.post.title} ref="title" onChange={(e) => this.handlerValues(e)} className="form-control" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword1">Content</label>
-                            <textarea type="text" ref="content" onChange={(e) => this.handlerValues(e)} className="form-control text-area" />
+                            <textarea type="text" value={this.state.post.content} ref="content" onChange={(e) => this.handlerValues(e)} className="form-control text-area" />
                         </div>
                        
                         <div className="form-group">
@@ -118,7 +136,7 @@ class EditPost extends Component {
                             ))}
                         </div>
 
-                        <button type="button" onClick={(e) => this.addPost(e)} className="btn btn-primary">Edit</button>
+                        <button type="button" onClick={(e) => this.addPost(e)} className="btn btn-primary">Update</button>
                         <button type="button" onClick={(e) => this.backButton(e)} className="btn btn-secondary back-button">Back</button>
                                 
                     </form>

@@ -83,6 +83,10 @@ class App extends Component {
       })
   }
 
+  readPost = (id) => {
+    this.props.history.push(`/read/${id}`)
+  }
+
   render() {
     return (
       <div className="App">
@@ -115,7 +119,7 @@ class App extends Component {
   
                   {this.state.posts.map(post => (
                     <div className="row" key={post.title}>
-                      <div className="card col-md-10 card-right">
+                      <div className="card col-md-10 card-right" onClick={()=> {this.readPost(post.id)} }>
                          <div className="card-body">
                          <h5 className="card-title" >{post.title}</h5>
                           <p className="card-text">{post.content}</p>
