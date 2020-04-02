@@ -13,14 +13,12 @@ import EditPost from './pages/edit/EditPost';
 
 ReactDOM.render(
   <BrowserRouter>
-  
-  <Switch>
-      <Route path="/" exact={true} component={App} />
-      <Route path="/post" component={CreatePost} />
-      <Route path="/admin" component={Admin} />
-      <Route path="/post/:id" component={EditPost} />
-  </Switch>
-
+    <Switch>
+        <Route path="/" exact={true} component={App} />
+        <Route path={`/post/:id`} component={EditPost} />
+        <Route path="/post" exact={true} component={CreatePost} />
+        <Route path="/admin" component={Admin} />
+    </Switch>
   </BrowserRouter>,
   document.getElementById('root')
 );
